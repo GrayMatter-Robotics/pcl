@@ -16,9 +16,13 @@ endif()
 file(GLOB incs include/pcl/gpu/features/*.hpp)
 file(GLOB srcs src/*.cpp src/*.hpp)
 file(GLOB cuda src/*.cu)
-# ********************** Redirect principal_curvatures.cu
+# ********************** 
+# Redirect principal_curvatures.cu
 list(REMOVE_ITEM cuda "${CMAKE_CURRENT_SOURCE_DIR}/src/principal_curvatures.cu")
 list(APPEND cuda "${CMAKE_SOURCE_DIR}/../gmrpcl/gpu/features/src/principal_curvatures.cu")
+# Redirect features.cpp
+list(REMOVE_ITEM srcs  "${CMAKE_CURRENT_SOURCE_DIR}/src/features.cpp")
+list(APPEND srcs  "${CMAKE_SOURCE_DIR}/../gmrpcl/gpu/features/src/features.cpp")
 # **********************
 file(GLOB dev_incs include/pcl/gpu/features/device/*.h*)
 source_group("Header Files\\device" FILES ${dev_incs})

@@ -96,6 +96,13 @@ public:
   void
   copyTo(DeviceMemory& other) const;
 
+  /** \brief Performs data copying with offet. No create will be called
+   * \param other destination container
+   * \param offset
+   * */
+  void
+  copyToWithOffset(DeviceMemory& other, int offset) const;
+
   /** \brief Uploads data to internal buffer in GPU memory. It calls create() inside to
    * ensure that internal buffer size is enough.
    * \param host_ptr_arg pointer to buffer to upload

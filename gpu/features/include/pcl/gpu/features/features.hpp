@@ -100,6 +100,8 @@ namespace pcl
             void compute(Normals& normals);
             void setViewPoint(float  vpx, float  vpy, float  vpz);  
             void getViewPoint(float& vpx, float& vpy, float& vpz) const;
+            void buildOctree();
+            void computeWithoutBuildTree(Normals& normals);
 
             static void computeNormals(const PointCloud& cloud, const NeighborIndices& nn_indices, Normals& normals);
             static void flipNormalTowardsViewpoint(const PointCloud& cloud, float vp_x, float vp_y, float vp_z, Normals& normals);            
@@ -195,7 +197,8 @@ namespace pcl
         class PCL_EXPORTS PrincipalCurvaturesEstimation : public FeatureFromNormals
         {
         public:
-
+            void buildOctree();
+            void computeWithoutBuildTree(DeviceArray<PrincipalCurvatures>& features);
             void compute(DeviceArray<PrincipalCurvatures>& features);                    
         private:
             NeighborIndices nn_indices_;

@@ -91,6 +91,13 @@ DeviceArray<T>::copyTo(DeviceArray& other) const
 
 template <class T>
 inline void
+DeviceArray<T>::copyToWithOffset(DeviceArray& other, int offset) const
+{
+  DeviceMemory::copyToWithOffset(other, offset*elem_size);
+}
+
+template <class T>
+inline void
 DeviceArray<T>::upload(const T* host_ptr, std::size_t size)
 {
   DeviceMemory::upload(host_ptr, size * elem_size);

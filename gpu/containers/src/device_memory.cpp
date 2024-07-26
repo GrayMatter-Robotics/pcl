@@ -247,6 +247,17 @@ pcl::gpu::DeviceMemory::copyTo(DeviceMemory& other) const
 }
 
 void
+pcl::gpu::DeviceMemory::copyToWithOffset(DeviceMemory& other, int offset) const
+{
+  if (empty())
+    other.release();
+  else {
+    cudaSafeCall(cudaMemcpy(static_cast<void*>(static_cast<char*>(other.data_)+offset), data_, sizeBytes_, cudaMemcpyDeviceToDevice));
+    cudaSafeCall(cudaDeviceSynchronize());
+  }
+}
+
+void
 pcl::gpu::DeviceMemory::release()
 {
   if (refcount_ && refcount_->fetch_sub(1) == 1) {
