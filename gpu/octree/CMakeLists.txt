@@ -21,6 +21,10 @@ file(GLOB utils src/utils/*.hpp)
 source_group("Source Files\\utils" FILES ${utils})
 
 file(GLOB cuda src/cuda/*.hpp src/cuda/*.cu)
+# *********************** Redirect octree_builder.cu
+list(REMOVE_ITEM cuda "${CMAKE_CURRENT_SOURCE_DIR}/src/cuda/octree_builder.cu")
+list(APPEND cuda "${CMAKE_SOURCE_DIR}/../gmrpcl/gpu/octree/src/cuda/octree_builder.cu")
+# ***********************
 source_group("Source Files\\cuda" FILES ${cuda})
 
 list(APPEND srcs ${utils} ${cuda})
