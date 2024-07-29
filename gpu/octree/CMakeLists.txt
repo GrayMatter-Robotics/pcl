@@ -13,7 +13,7 @@ if(NOT build)
   return()
 endif()
 
-file(GLOB incs include/pcl/gpu/octree/*.hpp)
+file(GLOB incs include/pcl/gpu/octree/*.hpp src/internal.hpp)
 file(GLOB srcs src/*.cpp src/*.hpp src/*.cu)
 source_group("Source Files" FILES ${srcs})
 
@@ -21,7 +21,7 @@ file(GLOB utils src/utils/*.hpp)
 source_group("Source Files\\utils" FILES ${utils})
 
 file(GLOB cuda src/cuda/*.hpp src/cuda/*.cu)
-# *********************** Redirect octree_builder.cu
+# *********************** Redirect octree_builder.cu (to solve thrust::sort)
 list(REMOVE_ITEM cuda "${CMAKE_CURRENT_SOURCE_DIR}/src/cuda/octree_builder.cu")
 list(APPEND cuda "${CMAKE_SOURCE_DIR}/../gmrpcl/gpu/octree/src/cuda/octree_builder.cu")
 # ***********************

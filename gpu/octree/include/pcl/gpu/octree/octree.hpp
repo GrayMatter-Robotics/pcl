@@ -166,7 +166,8 @@ namespace pcl
 
             /** \brief Desroys octree and release all resources */
             void clear();            
-        private:
+        // private:
+        protected:
             void *impl;            
             bool built_;
         };        
