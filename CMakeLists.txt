@@ -456,12 +456,21 @@ include("${PCL_SOURCE_DIR}/cmake/pcl_pclconfig.cmake")
 include("${PCL_SOURCE_DIR}/cmake/pcl_all_in_one_installer.cmake")
 include("${PCL_SOURCE_DIR}/cmake/pcl_cpack.cmake")
 
-if(CPACK_GENERATOR)
-  message(STATUS "Found CPack generators: ${CPACK_GENERATOR}")
-  PCL_MAKE_CPACK_INPUT()
-  set(CPACK_PROJECT_CONFIG_FILE "${PCL_CPACK_CFG_FILE}")
-  include(CPack)
-endif()
+SET(CPACK_GENERATOR "DEB")
+set(CPACK_PACKAGE_NAME "gmrpcl-humble")
+SET(CPACK_PACKAGE_VERSION_MAJOR "1")
+SET(CPACK_PACKAGE_VERSION_MINOR "14")
+SET(CPACK_PACKAGE_VERSION_PATCH "0")
+SET(CPACK_DEBIAN_PACKAGE_MAINTAINER "GrayMatter Robotics") #required
+INCLUDE(CPack)
+
+# if(CPACK_GENERATOR)
+#   message(STATUS "Found CPack generators: ${CPACK_GENERATOR}")
+#   PCL_MAKE_CPACK_INPUT()
+#   set(CPACK_PROJECT_CONFIG_FILE "${PCL_CPACK_CFG_FILE}")
+#   include(CPack)
+# endif()
+
 ### ---[ Make a pretty picture of the dependency graph
 include("${PCL_SOURCE_DIR}/cmake/dep_graph.cmake")
 MAKE_DEP_GRAPH()
